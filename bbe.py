@@ -50,6 +50,8 @@ os.system("python ~/.scripts/move_window.py big_left")
 sleep(0.2)
 keyboard.type("i")
 
+#TODO: ADD LISTENER TO END THE PROGRAM
+
 #Open bullshit template and live the dream
 fd = open("stud.sh", "r")
 for line in fd:
