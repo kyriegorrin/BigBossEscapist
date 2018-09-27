@@ -2,6 +2,7 @@ from pynput.keyboard import Key, Controller
 from pynput import mouse
 from time import sleep
 import subprocess as sp
+import os
 
 keyboard = Controller()
 mouseController = mouse.Controller()
@@ -30,9 +31,26 @@ def dragMouse(dx, dy):
 #mouseController.move(50, 50)
 #dragMouse(300, 300)
 
-#Create and move terminals
-pid1 = sp.Popen(args=["gnome-terminal", "--command=top"]).pid
-print "Top terminal spawned, pid: ", pid1
+#Getting our HOME and move_window variable
+home = os.environ["HOME"]
+move_window = home + "move_window.py"
 
-pid2 = sp.Popen(args=["gnome-terminal", "--comand=vim totallySeriousCode.sh"]).pid
-print "Vim terminal spawned, pid: ", pid2
+#Create and move terminals, sleep to ensure enough time to boot shells
+os.system("gnome-terminal -e 'top'")
+sleep(0.5)
+os.system("python ~/.scripts/move_window.py small_right")
+sleep(0.2)
+
+os.system("gnome-terminal -e 'vim SPerMA_bench.sh'")
+sleep(0.5)
+os.system("python ~/.scripts/move_window.py big_left")
+sleep(0.2)
+
+#pid2 = sp.Popen(args=["gnome-terminal", "--vim totallySeriousCode.sh"]).pid
+#pid2 = sp.Popen(args=["gnome-terminal", "-e", "'bash'"]).pid
+#sleep(1)
+#keyboard.type("\n")
+#keyboard.type("python ~/.scripts/move_window.py big_left \n")
+#sp.call(["python", "~/.scripts/move_window.py", "big_left"])
+#keyboard.type("i Hola titus")
+#print "Vim terminal spawned, pid: ", pid2
