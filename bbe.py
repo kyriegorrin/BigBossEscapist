@@ -1,6 +1,7 @@
 from pynput.keyboard import Key, Controller
 from pynput import mouse
 from time import sleep
+import subprocess as sp
 
 keyboard = Controller()
 mouseController = mouse.Controller()
@@ -20,11 +21,18 @@ def dragMouse(dx, dy):
             mouseController.move(0, -1)
         sleep(0.001)
 
-keyboard.press('p')
-keyboard.release('p')
+#keyboard.press('p')
+#keyboard.release('p')
+#
+#keyboard.type('Hakuna matata')
+#
+#mouseController.position = (10, 20)
+#mouseController.move(50, 50)
+#dragMouse(300, 300)
 
-keyboard.type('Hakuna matata')
+#Create and move terminals
+pid1 = sp.Popen(args=["gnome-terminal", "--command=top"]).pid
+print "Top terminal spawned, pid: ", pid1
 
-mouseController.position = (10, 20)
-mouseController.move(50, 50)
-dragMouse(300, 300)
+pid2 = sp.Popen(args=["gnome-terminal", "--comand=vim totallySeriousCode.sh"]).pid
+print "Vim terminal spawned, pid: ", pid2
