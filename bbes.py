@@ -1,8 +1,8 @@
-from pynput.keyboard import Key, Controller
+from pynput.keyboard import Key, Controller, Listener
 from pynput import mouse
 from time import sleep
 import subprocess as sp
-import os
+import os, signal
 
 #Input controllers
 keyboard = Controller()
@@ -34,6 +34,7 @@ def typeLine(line):
         if count % 20 == 0:
             sleep(1)
 
+
 #mouseController.position = (10, 20)
 #mouseController.move(50, 50)
 #dragMouse(300, 300)
@@ -52,10 +53,24 @@ os.system("python ~/.scripts/move_window.py big_left")
 sleep(0.2)
 keyboard.type("i")
 
-#TODO: ADD LISTENER TO END THE PROGRAM
 
-#Open bullshit template and live the dream
+#Open bullshit template
 fd = open("stud.sh", "r")
+
+#TODO: ADD LISTENER TO END THE PROGRAM
+def on_press(key):
+    if key == Key.esc:
+        os.kill(pid1, signal.SIGTERM)        
+        os.kill(pid2, signal.SIGTERM)        
+        exit()
+
+''' NO FUNCA
+with Listener(
+    on_press=on_press) as listener:
+    listener.join()
+'''
+
+#Live the dream
 for line in fd:
    typeLine(line)
 
