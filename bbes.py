@@ -39,12 +39,14 @@ def typeLine(line):
 #dragMouse(300, 300)
 
 #Create and move terminals, sleep to ensure enough time to boot shells
-os.system("gnome-terminal -e 'top'")
+#os.system("gnome-terminal -e 'top'")
+pid1 = sp.call(["gnome-terminal", "-e", "top"])
 sleep(0.5)
 os.system("python ~/.scripts/move_window.py small_right")
 sleep(0.2)
 
-os.system("gnome-terminal -e 'vim SPerMA_bench.sh'")
+#os.system("gnome-terminal -e 'vim SPerMA_bench.sh'")
+pid2 = sp.call(["gnome-terminal", "-e", "vim SPerMA_bench.sh"])
 sleep(0.5)
 os.system("python ~/.scripts/move_window.py big_left")
 sleep(0.2)
