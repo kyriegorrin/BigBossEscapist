@@ -8,6 +8,9 @@ import os, signal
 keyboard = Controller()
 mouseController = mouse.Controller()
 
+#Exit variable
+finished = False
+
 #Helper functions
 def dragMouse(dx, dy):
     for i in range(0, dx):
@@ -27,6 +30,11 @@ def dragMouse(dx, dy):
 def typeLine(line):
     count = 0
     for character in line:
+        #If program terminated, exit
+        if finished:
+            #Clear junk generated
+            sp.call(["rm", ".SPerMA*"])
+            exit()
         keyboard.type(character)
         sleep(0.1)
         count += 1
@@ -57,24 +65,26 @@ keyboard.type("i")
 #Open bullshit template
 fd = open("stud.sh", "r")
 
+
 #TODO: ADD LISTENER TO END THE PROGRAM
 def on_press(key):
     if key == Key.esc:
-        #os.kill(pid1, signal.SIGTERM)        
-        #os.kill(pid2, signal.SIGTERM)        
+        sp.call(["killall", "top"])
+        sp.call(["killall", "vi"])
+        #Access thread variable
+        global finished 
+        finished = True
         exit()
-''' LISTENER RIPERINO
-Listener(on_press=on_press) 
-'''
 
-'''
+#Create a listener thread
+listener = Listener(on_press=on_press)
+listener.start()
+
 #Live the dream
 for line in fd:
    typeLine(line)
-'''
 
-
-#We nuke all processes. It's done like this because there are 
-#subprocesses created from the gnome-terminal we can't reach.
-sp.call(["killall", "top"])
-sp.call(["killall", "vi"])
+#We nuke all top and vi processes. It's done like this because there are 
+#subprocesses created from the gnome-terminal we can't reach (unknown pid).
+#sp.call(["killall", "top"])
+#sp.call(["killall", "vi"])
