@@ -40,14 +40,14 @@ def typeLine(line):
 #dragMouse(300, 300)
 
 #Create and move terminals, sleep to ensure enough time to boot shells
-#os.system("gnome-terminal -e 'top'")
-pid1 = sp.call(["gnome-terminal", "-e", "top"])
+#p1 = sp.call(["top"], shell=True)
+p1 = sp.Popen(["gnome-terminal", "--command=top"])
 sleep(0.5)
 os.system("python ~/.scripts/move_window.py small_right")
 sleep(0.2)
 
-#os.system("gnome-terminal -e 'vim SPerMA_bench.sh'")
-pid2 = sp.call(["gnome-terminal", "-e", "vim SPerMA_bench.sh"])
+#pid2 = sp.call(["gnome-terminal", "-e", "vim SPerMA_bench.sh"])
+p2 = sp.Popen(["gnome-terminal", "--command=vi SPerMA_bench.sh"])
 sleep(0.5)
 os.system("python ~/.scripts/move_window.py big_left")
 sleep(0.2)
@@ -60,25 +60,21 @@ fd = open("stud.sh", "r")
 #TODO: ADD LISTENER TO END THE PROGRAM
 def on_press(key):
     if key == Key.esc:
-        os.kill(pid1, signal.SIGTERM)        
-        os.kill(pid2, signal.SIGTERM)        
+        #os.kill(pid1, signal.SIGTERM)        
+        #os.kill(pid2, signal.SIGTERM)        
         exit()
-
-''' NO FUNCA
-with Listener(
-    on_press=on_press) as listener:
-    listener.join()
+''' LISTENER RIPERINO
+Listener(on_press=on_press) 
 '''
 
+'''
 #Live the dream
 for line in fd:
    typeLine(line)
+'''
 
-#pid2 = sp.Popen(args=["gnome-terminal", "--vim totallySeriousCode.sh"]).pid
-#pid2 = sp.Popen(args=["gnome-terminal", "-e", "'bash'"]).pid
-#sleep(1)
-#keyboard.type("\n")
-#keyboard.type("python ~/.scripts/move_window.py big_left \n")
-#sp.call(["python", "~/.scripts/move_window.py", "big_left"])
-#keyboard.type("i Hola titus")
-#print "Vim terminal spawned, pid: ", pid2
+
+#We nuke all processes. It's done like this because there are 
+#subprocesses created from the gnome-terminal we can't reach.
+sp.call(["killall", "top"])
+sp.call(["killall", "vi"])
