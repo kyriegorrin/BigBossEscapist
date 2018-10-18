@@ -22,7 +22,7 @@ The stud.sh is just filler that I got from a random benchmark script: Cyclenerd/
 
 <h2>Additional requirements</h2>
 <ul>
-  <lix>dotool (sudo apt-get install xdotool)</li>
+  <li>dotool (sudo apt-get install xdotool)</li>
   <li>xwininfo (you probably have it already)</li>
 </ul>
 
