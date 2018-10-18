@@ -10,17 +10,21 @@ The stud.sh is just filler that I got from a random benchmark script: Cyclenerd/
 </p>
 
 <h2>Required python modules</h2>
-* pynput
-* subprocess
-* sys
-* pdb
-* json
-* re
-* os
+<ul>
+  <li>pynput</li>
+  <li>subprocess</li>
+  <li>sys</li>
+  <li>pdb</li>
+  <li>json</li>
+  <li>re</li>
+  <li>os</li>
+</ul>
 
 <h2>Additional requirements</h2>
-* xdotool (sudo apt-get install xdotool)
-* xwininfo (you probably have it already)
+<ul>
+  <lix>dotool (sudo apt-get install xdotool)</li>
+  <li>xwininfo (you probably have it already)</li>
+</ul>
 
 <h2>Installation and usage</h2>
 //TODO
