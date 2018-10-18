@@ -14,8 +14,10 @@ mouseController = mouse.Controller()
 dragX = 500
 dragY = 500
 
-#Exit variable
+#Misc variables
+dirname = os.path.dirname(__file__)
 finished = False
+
 
 ###########Helper functions############
 
@@ -47,7 +49,7 @@ def typeLine(line):
         #If program terminated, exit
         if finished:
             #Clear junk generated
-            os.system("rm " + os.environ["PWD"] + "/.SPerMA_bench.*")
+            os.system("rm " + dirname + "/.SPerMA_bench.*")
             exit()
         keyboard.type(character)
         sleep(0.1)
@@ -76,13 +78,13 @@ p1 = sp.Popen(["gnome-terminal", "--command=top"])
 sleep(0.5)
 os.system("python ~/.scripts/move_window.py small_right")
 
-p2 = sp.Popen(["gnome-terminal", "--command=vi SPerMA_bench.sh"])
+p2 = sp.Popen(["gnome-terminal", "--command=vi " + dirname + "/SPerMA_bench.sh"])
 sleep(0.5)
 os.system("python ~/.scripts/move_window.py big_left")
 keyboard.type("i")
 
 #Open bullshit template
-fd = open("stud.sh", "r")
+fd = open(dirname + "/stud.sh", "r")
 
 #Create a listener thread
 listener = Listener(on_press=on_press)
