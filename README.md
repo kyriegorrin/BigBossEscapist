@@ -10,6 +10,7 @@ The stud.sh is just filler that I got from a random benchmark script: Cyclenerd/
 </p>
 
 <h2>Required python modules</h2>
+<p>All of them should be available using pip</p>
 <ul>
   <li>pynput</li>
   <li>subprocess</li>
@@ -27,4 +28,19 @@ The stud.sh is just filler that I got from a random benchmark script: Cyclenerd/
 </ul>
 
 <h2>Installation and usage</h2>
-//TODO
+<p>
+To use it, you can place the whole directory wherever you want. The only required step is "installing" the move_window.py script: 
+<p>
+
+<ul>
+  <li>Create a ".scripts" directory in your home folder.</li>  
+  <li>Copy and paste the "move_window.py" script there.</li>
+  <li>Run it with this: "python ~/.scripts/move_window.py autoconfig"</li>
+</ul>
+
+<p>
+You should be ablo to run the "bbes.py" script now. Try it with "python /path/to/script/bbes.py".
+
+If you want to run it using a shortcut, create a shortcut that runs the following command:
+  <i>gnome-terminal -e 'bash -c "python /path/to/script/bbes.py"'</i>    
+</p>
