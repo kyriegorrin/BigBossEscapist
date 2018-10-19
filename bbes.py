@@ -93,8 +93,6 @@ listener.start()
 #Live the dream
 for line in fd:
    typeLine(line)
-
-   #TODO: fix mouse usage
-   #dragMouse(700, 700)
-   #dragX = -dragX
-   #dragY = -dragY
+   dragMouse(dragX, dragY)
+   dragX = -dragX
+   dragY = -dragY
