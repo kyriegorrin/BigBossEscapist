@@ -26,6 +26,9 @@ The stud.sh is just filler that I got from a random benchmark script: Cyclenerd/
   <li>dotool (sudo apt-get install xdotool)</li>
   <li>xwininfo (you probably have it already)</li>
 </ul>
+<p>
+  You should be able to get them with "apt".
+</p>
 
 <h2>Installation and usage</h2>
 <p>
